@@ -1,25 +1,24 @@
 import requests
-from pprint import pprint
-from bottle import run, post, response, request as bottle_request
+from bottle import run, post, request as bottle_request
 import json
-import time
 import datetime
+import configparser
+
+config = configparser.ConfigParser()
+config.read("config.ini")
 
 
-BOT_URL = "TOKEN"
-CHAT_ID = "CHAT ID"
+bot_url = config["DEFAULT"]["token"]
+chat_id = config["DEFAULT"]["chat_id"]
 message = "message"
 
 
 def checkWebhook():
     with open("ngrok_f/ip.txt", "r") as myfile:
         ip = myfile.read().replace("\n", "")
-        ipcheck = requests.get(
-            BOT_URL + "getWebhookInfo").json()["result"]["url"]
-        # print (ip)
-        # print (ipcheck)
+        ipcheck = requests.get(bot_url + "getWebhookInfo").json()["result"]["url"]
         if ip != ipcheck:
-            requests.post(BOT_URL + "setWebHook?url=" + ip)
+            requests.post(bot_url + "setWebHook?url=" + ip)
             print("Webhook was changed!")
         else:
             print("OK!")
@@ -27,16 +26,13 @@ def checkWebhook():
 
 def send_message(answer, chatid):
     json_data = {"chat_id": chatid, "text": answer}
-    message_url = BOT_URL + "sendMessage"
-    requests.post(
-        message_url, json=json_data
-    )  # don't forget to make import requests lib
+    message_url = bot_url + "sendMessage"
+    requests.post(message_url, json=json_data)
 
 
 def reply_message(chatid, answer, messid):
-    json_data = {"chat_id": chatid, "text": answer,
-                 "reply_to_message_id": messid}
-    message_url = BOT_URL + "sendMessage"
+    json_data = {"chat_id": chatid, "text": answer, "reply_to_message_id": messid}
+    message_url = bot_url + "sendMessage"
     requests.post(message_url, json=json_data)
 
 
@@ -44,7 +40,6 @@ def main_keyboard(chatid):
     json_keyboard = json.dumps(
         {
             "keyboard": [
-                # 1-я строка клавиатуры и тд
                 ["Подгузы 1 р-р", "Подгузы 2 р-р"],
                 ["Подгузы 3 р-р", "Подгузы 4 р-р"],
                 ["Трусы 3 р-р", "Трусы 4 р-р"],
@@ -56,11 +51,10 @@ def main_keyboard(chatid):
     )
     json_data = {
         "chat_id": chatid,
-        # этот текст нужен если у тебя несколько разных клавиатур (если тебе это не надо удаляй)
         "text": "Что угодно?",
         "reply_markup": json_keyboard,
     }
-    requests.post(BOT_URL + "sendMessage", data=json_data)
+    requests.post(bot_url + "sendMessage", data=json_data)
 
 
 def log_message(date, chatid, message_text):
@@ -84,7 +78,6 @@ def main():
     data = bottle_request.json
     if "message" in data.keys():
         message_text = data["message"]["text"]
-        # print(message_text)
         chatid = data["message"]["chat"]["id"]
         messid = data["message"]["message_id"]
         date = data["message"]["date"]
@@ -125,32 +118,28 @@ def main():
                 with open("answers.json", "r", encoding="utf-8") as f:
                     reply_message(chatid, json.load(f)["p_size1"], messid)
             except:
-                reply_message(
-                    chatid, "Ошибка запроса: Подгузники 1 р-р", messid)
+                reply_message(chatid, "Ошибка запроса: Подгузники 1 р-р", messid)
 
         if message_text == "Подгузы 2 р-р":
             try:
                 with open("answers.json", "r", encoding="utf-8") as f:
                     reply_message(chatid, json.load(f)["p_size2"], messid)
             except:
-                reply_message(
-                    chatid, "Ошибка запроса: Подгузники 2 р-р", messid)
+                reply_message(chatid, "Ошибка запроса: Подгузники 2 р-р", messid)
 
         if message_text == "Подгузы 3 р-р":
             try:
                 with open("answers.json", "r", encoding="utf-8") as f:
                     reply_message(chatid, json.load(f)["p_size3"], messid)
             except:
-                reply_message(
-                    chatid, "Ошибка запроса: Подгузники 3 р-р", messid)
+                reply_message(chatid, "Ошибка запроса: Подгузники 3 р-р", messid)
 
         if message_text == "Подгузы 4 р-р":
             try:
                 with open("answers.json", "r", encoding="utf-8") as f:
                     reply_message(chatid, json.load(f)["p_size4"], messid)
             except:
-                reply_message(
-                    chatid, "Ошибка запроса: Подгузники 4 р-р", messid)
+                reply_message(chatid, "Ошибка запроса: Подгузники 4 р-р", messid)
 
         if message_text == "Трусы 3 р-р":
             try:
@@ -190,8 +179,7 @@ def main():
                     ids.append(line[1])
 
                 reply_message(
-                    chatid, "Уникальных пользователей: " +
-                    str(len(set(ids))), messid
+                    chatid, "Уникальных пользователей: " + str(len(set(ids))), messid
                 )
             except:
                 reply_message(chatid, "Ошибка запроса: Статистика", messid)
