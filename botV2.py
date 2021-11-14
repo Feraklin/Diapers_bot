@@ -57,19 +57,27 @@ def main_keyboard(chatid):
     requests.post(bot_url + "sendMessage", data=json_data)
 
 
+def price_check(id, chatid, messid):
+    try:
+        with open("answers.json", "r", encoding="utf-8") as f:
+            reply_message(chatid, json.load(f)[id], messid)
+    except:
+        reply_message(chatid, "Ошибка запроса", messid)
+
+
 def log_message(date, chatid, message_text):
     newLogLine = [
         datetime.datetime.fromtimestamp(date).strftime("%Y-%m-%d %H:%M:%S"),
         chatid,
         message_text,
     ]
-    with open("/home/feraklin1/bot1/bot_log.json", "r", encoding="utf-8") as f:
+    with open("bot_log.json", "r", encoding="utf-8") as f:
         log = json.load(f)["log"]
 
     log.append(newLogLine)
     logLines = {"log": log}
 
-    with open("/home/feraklin1/bot1/bot_log.json", "w", encoding="utf-8") as f:
+    with open("bot_log.json", "w", encoding="utf-8") as f:
         json.dump(logLines, f, ensure_ascii=False, indent=4)
 
 
@@ -114,60 +122,28 @@ def main():
                 pass
 
         if message_text == "Подгузы 1 р-р":
-            try:
-                with open("answers.json", "r", encoding="utf-8") as f:
-                    reply_message(chatid, json.load(f)["p_size1"], messid)
-            except:
-                reply_message(chatid, "Ошибка запроса: Подгузники 1 р-р", messid)
+            price_check("p_size1", chatid, messid)
 
         if message_text == "Подгузы 2 р-р":
-            try:
-                with open("answers.json", "r", encoding="utf-8") as f:
-                    reply_message(chatid, json.load(f)["p_size2"], messid)
-            except:
-                reply_message(chatid, "Ошибка запроса: Подгузники 2 р-р", messid)
+            price_check("p_size2", chatid, messid)
 
         if message_text == "Подгузы 3 р-р":
-            try:
-                with open("answers.json", "r", encoding="utf-8") as f:
-                    reply_message(chatid, json.load(f)["p_size3"], messid)
-            except:
-                reply_message(chatid, "Ошибка запроса: Подгузники 3 р-р", messid)
+            price_check("p_size3", chatid, messid)
 
         if message_text == "Подгузы 4 р-р":
-            try:
-                with open("answers.json", "r", encoding="utf-8") as f:
-                    reply_message(chatid, json.load(f)["p_size4"], messid)
-            except:
-                reply_message(chatid, "Ошибка запроса: Подгузники 4 р-р", messid)
+            price_check("p_size4", chatid, messid)
 
         if message_text == "Трусы 3 р-р":
-            try:
-                with open("answers.json", "r", encoding="utf-8") as f:
-                    reply_message(chatid, json.load(f)["t_size3"], messid)
-            except:
-                reply_message(chatid, "Ошибка запроса: Трусы 3 р-р", messid)
+            price_check("t_size3", chatid, messid)
 
         if message_text == "Трусы 4 р-р":
-            try:
-                with open("answers.json", "r", encoding="utf-8") as f:
-                    reply_message(chatid, json.load(f)["t_size4"], messid)
-            except:
-                reply_message(chatid, "Ошибка запроса: Трусы 4 р-р", messid)
+            price_check("t_size4", chatid, messid)
 
         if message_text == "Трусы 5 р-р":
-            try:
-                with open("answers.json", "r", encoding="utf-8") as f:
-                    reply_message(chatid, json.load(f)["t_size5"], messid)
-            except:
-                reply_message(chatid, "Ошибка запроса: Трусы 5 р-р", messid)
+            price_check("t_size5", chatid, messid)
 
         if message_text == "Трусы 6 р-р":
-            try:
-                with open("answers.json", "r", encoding="utf-8") as f:
-                    reply_message(chatid, json.load(f)["t_size6"], messid)
-            except:
-                reply_message(chatid, "Ошибка запроса: Трусы 6 р-р", messid)
+            price_check("t_size6", chatid, messid)
 
         if message_text == "стат" or message_text == "Cтат":
             try:
