@@ -13,7 +13,7 @@ chat_id = config["DEFAULT"]["chat_id"]
 message = "message"
 
 
-def checkWebhook():
+def check_webhook():
     with open("ngrok_f/ip.txt", "r") as myfile:
         ip = myfile.read().replace("\n", "")
         ipcheck = requests.get(bot_url + "getWebhookInfo").json()["result"]["url"]
@@ -169,5 +169,5 @@ def main():
 
 
 if __name__ == "__main__":
-    checkWebhook()
+    check_webhook()
     run(host="localhost", port=8080, debug=True)
