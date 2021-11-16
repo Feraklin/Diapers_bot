@@ -1,6 +1,6 @@
 {
-    "urlsForCheck": [],
-    "urlsEvro": [
+    "urls_for_check": [],
+    "urls_evro": [
         "https://e-dostavka.by/catalog/item_449964.html",
         "https://e-dostavka.by/catalog/item_1013618.html",
         "https://e-dostavka.by/catalog/item_1013619.html",
@@ -216,7 +216,7 @@
         "https://e-dostavka.by/catalog/item_565124.html",
         "https://e-dostavka.by/catalog/item_159976.html"
     ],
-    "urlsOstrov": [
+    "urls_ostrov": [
         "https://ostrov-shop.by/catalog/tovary-dlya-detey/gigiena-i-ukhod-za-detmi/podguzniki/detskie-odnorazovye-podguzniki-huggies-classic-giga-5-11-25-kg-70-sht/",
         "https://ostrov-shop.by/catalog/tovary-dlya-detey/gigiena-i-ukhod-za-detmi/podguzniki/podguzniki-huggies-elite-soft-5-mega-12-22-kg-56-sht/",
         "https://ostrov-shop.by/catalog/tovary-dlya-detey/gigiena-i-ukhod-za-detmi/podguzniki/podguzniki-pampers-premium-care-maxi-9-14-kg-54-sht/",
@@ -320,7 +320,7 @@
         "https://ostrov-shop.by/catalog/tovary-dlya-detey/gigiena-i-ukhod-za-detmi/podguzniki-trusiki/podguzniki-trusiki-pampers-nochnye-dlya-malchikov-i-devochek-maxi-9-15-kg-30-sht/",
         "https://ostrov-shop.by/catalog/tovary-dlya-detey/gigiena-i-ukhod-za-detmi/podguzniki-trusiki/podguzniki-trusiki-pampers-pants-dlya-malchikov-i-devochek-mini-4-8-kg-dzhambo-72-sht/"
     ],
-    "urlsBuslik": [
+    "urls_buslik": [
         "https://buslik.by/catalog/podguzniki/podguzniki_1/podguzniki_huggies_elite_soft_box_2_4_6_kg_164_sht/",
         "https://buslik.by/catalog/podguzniki/podguzniki_1/podguzniki_huggies_elite_soft_box_3_5_9_kg_160_sht/",
         "https://buslik.by/catalog/podguzniki/podguzniki_1/podguzniki_huggies_elite_soft_box_4_8_14_kg_132_sht/",
@@ -478,7 +478,7 @@
         "https://buslik.by/catalog/podguzniki/trusiki_podguzniki/trusiki_podguzniki_huggies_elite_soft_giga_6_15_25_kg_38_sht/",
         "https://buslik.by/catalog/podguzniki/trusiki_podguzniki/trusiki_podguzniki_huggies_elite_soft_mega_6_15_25_kg_32_sht/"
     ],
-    "urlsMila": [
+    "urls_mila": [
         "https://mila.by/product/podguzniki-trusiki-pampers-premium-care-pants-midi-6-11-kg-dlya-malchikov-i-devochek-96-sht-7924603/",
         "https://mila.by/product/podguzniki-detskie-pampers-premium-care-mini-4-8-kg-66-sht-7924674/",
         "https://mila.by/product/podguzniki-trusiki-pampers-pants-size-7-17-kg-dlya-malchikov-i-devochek-80-sht-7924735/",
